@@ -1,17 +1,17 @@
-name: "Cerrar PRs sin actividad"
+name: "Gestionar PRs inactivos"
 on:
   schedule:
-    - cron: "* * * * *"  # Ejecuta el workflow cada hora
+    - cron: "*/5 * * * *"  # Ejecuta el workflow cada 5 minutos
 jobs:
-  no-activity-tag:
+  manage-stale-prs:
     runs-on: ubuntu-latest
     steps:
       - name: Ejecutar acción stale
         uses: actions/stale@v9
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          days-before-pr-stale: 0.125   # 3 horas expresadas en días
-          days-before-pr-close: 0.1667  # 4 horas expresadas en días
-          stale-pr-message: "Este PR está inactivo desde hace 3 horas. Se cerrará automáticamente si no hay actividad adicional."
-          close-pr-message: "Este PR se ha cerrado automáticamente debido a la inactividad de 4 horas."
+          days-before-pr-stale: 0.0035   # 5 minutos expresados en días
+          days-before-pr-close: 0.0069  # 10 minutos expresados en días
+          stale-pr-message: "Este PR ha estado inactivo durante 5 minutos y se ha marcado como inactivo. Se cerrará automáticamente en 5 minutos si no hay actividad adicional."
+          close-pr-message: "Este PR se ha cerrado automáticamente después de 10 minutos de inactividad."
           stale-pr-label: "SIN_ACTIVIDAD"
