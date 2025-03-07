@@ -1,0 +1,22 @@
+name: Run Hello World
+run-name: Run Hello World with JDK 17!
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out source code
+      uses: actions/checkout@v4
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: '17'
+    - name: Build with Maven
+      run: mvn -B package --file pom.xml
+    - name: Map env USER_NAME
+      run: echo "USER_NAME=GitHub" >> $GITHUB_ENV
+    - name: Run Hello World
+      run: java -jar target/hello-world.jar
+      env:
+          USER_NAME: ${{ env.USER_NAME }}
