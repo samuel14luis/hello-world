@@ -1,6 +1,25 @@
 name: Run Hello World
 run-name: Run Hello World with JDK 17!
-on: [push]
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'src/**'
+  pull_request:
+    branches:
+      - main
+    types: [opened, synchronize, reopened]
+    paths:
+      - 'src/**'
+  workflow_dispatch:
+    inputs:
+      user_name:
+        description: 'Your name'
+        required: true
+        default: 'GitHub Actions'
+  schedule:
+    - cron: '18 20 * 7 *'
 jobs:
   build:
     runs-on: ubuntu-latest
