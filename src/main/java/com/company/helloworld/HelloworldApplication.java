@@ -8,7 +8,8 @@ public class HelloworldApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(HelloworldApplication.class, args);
-		System.out.println("Hello World!");
+		String userName = System.getenv("USER_NAME");
+		System.out.println("Hello, " + userName + "!");
 	}
 
 }
