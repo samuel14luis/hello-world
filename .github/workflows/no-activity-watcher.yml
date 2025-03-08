@@ -9,7 +9,7 @@ jobs:
       - name: Ejecutar acción stale
         uses: actions/stale@v9
         with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          repo-token: ${{ secrets.GITHUB_TOKEN_STALE }}
           days-before-pr-stale: 0.0035   # 5 minutos expresados en días
           days-before-pr-close: 0.0069  # 10 minutos expresados en días
           stale-pr-message: "Este PR ha estado inactivo durante 5 minutos y se ha marcado como inactivo. Se cerrará automáticamente en 5 minutos si no hay actividad adicional."
